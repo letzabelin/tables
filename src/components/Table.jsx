@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
-import { asc, desc } from '../features/filter/filterSlice.js';
+import { filterSlice: { asc, desc } } from '../slices';
 
 export default () => {
   const data = useSelector((state) => state.data);
