@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
-import { filterSlice: { asc, desc } } from '../slices';
+import { actions } from '../slices';
 
 export default () => {
-  const data = useSelector((state) => state.data);
+  const data = useSelector((state) => state.main.data);
 
   return (
     <Table hover striped>

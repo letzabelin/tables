@@ -1,3 +1,15 @@
-export { default as filterSlice } from './filterSlice.js';
-export { default as displaySlice } from './displaySlice.js';
-export { default as paginageSlice } from './paginageSlice.js';
+import { combineReducers } from 'redux';
+
+import filters, { actions as filtersActions } from './filters.js';
+import pages, { actions as pagesActions } from './pages.js';
+import main from './main.js';
+
+const actions = { filtersActions, pagesActions };
+
+export { actions };
+
+export default combineReducers({
+  filters,
+  pages,
+  main,
+});
