@@ -8,6 +8,7 @@ const makePerson = () => {
     lastName: faker.name.lastName(),
     age: faker.random.number({ min: 21, max: 50 }),
     job: faker.name.jobTitle(),
+    uuid: faker.random.uuid(),
   };
 };
 
