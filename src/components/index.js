@@ -1,2 +1,2 @@
-export { default as Table } from './Table.jsx';
-export { default as Pagination } from './Pagination.jsx';
+export { default as Table } from './Table';
+export { default as Pagination } from './Pagination';
