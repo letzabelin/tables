@@ -12,6 +12,9 @@ const slice = createSlice({
     desc: (state) => {
       state.order = 'desc';
     },
+    base: (state) => {
+      state.order = 'base';
+    },
   },
 });
 
