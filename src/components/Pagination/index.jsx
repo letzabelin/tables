@@ -2,24 +2,22 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import { actions } from '../slices';
+import { actions } from '../../slices';
 
 const Pagination = () => {
   const { currentPage, quantity } = useSelector((state) => state.pages);
   const { length } = useSelector((state) => state.main.data);
+  const dispatch = useDispatch();
+
+  const lessThenMin = currentPage <= 1;
+  const moreThenMax = currentPage >= length / quantity;
 
   const {
     pagesActions: { paginate, changeQuantity },
   } = actions;
-  const dispatch = useDispatch();
 
-  const handlePrevPage = (evt) => {
-    const action = { nextPage: -1 };
-    dispatch(paginate(action));
-  };
-
-  const handleNextPage = (evt) => {
-    const action = { nextPage: 1 };
+  const navigatePage = (value) => () => {
+    const action = { nextPage: value };
     dispatch(paginate(action));
   };
 
@@ -28,18 +26,15 @@ const Pagination = () => {
     dispatch(changeQuantity(action));
   };
 
-  const lessThenMin = currentPage <= 1;
-  const moreThenMax = currentPage >= length / quantity;
-
   return (
     <>
-      <Button disabled={lessThenMin} onClick={handlePrevPage} variant="primary">
+      <Button disabled={lessThenMin} onClick={navigatePage(-1)} variant="primary">
         Previous page
       </Button>
       {'  '}
       <Button variant="success">{currentPage}</Button>
       {'  '}
-      <Button disabled={moreThenMax} onClick={handleNextPage} variant="primary">
+      <Button disabled={moreThenMax} onClick={navigatePage(1)} variant="primary">
         Next page
       </Button>
       {'  '}

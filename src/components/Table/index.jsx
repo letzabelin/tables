@@ -1,16 +1,15 @@
 import React from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table } from 'react-bootstrap';
+import { Table as RBTable } from 'react-bootstrap';
 
-import { actions } from '../slices';
-import paginate from '../utils/paginate.js';
+import { actions } from '../../slices';
+import paginate from '../../utils/paginate.js';
 
-export default () => {
+const Table = () => {
   const data = useSelector((state) => state.main.data);
   const order = useSelector((state) => state.filters.order);
   const { currentPage, quantity } = useSelector((state) => state.pages);
-
   const dispatch = useDispatch();
 
   const {
@@ -23,20 +22,21 @@ export default () => {
     base: <span>&#9658;</span>,
   };
 
-  const changeOrder = (evt) => {
-    const orders = {
+  const changeOrder = () => {
+    const handleOrder = {
       asc: () => {
-        dispatch(desc());
-      },
-      desc: () => {
         dispatch(base());
       },
-      base: () => {
+      desc: () => {
         dispatch(asc());
+      },
+      base: () => {
+        dispatch(desc());
       },
     };
 
-    orders[order]();
+    handleOrder[order]();
+    return;
   };
 
   const displayData = (arr) => {
@@ -62,7 +62,7 @@ export default () => {
   };
 
   return (
-    <Table hover striped>
+    <RBTable hover striped>
       <thead>
         <tr>
           <th style={{ cursor: 'pointer' }} onClick={changeOrder}>
@@ -74,6 +74,8 @@ export default () => {
         </tr>
       </thead>
       <tbody>{displayData(data)}</tbody>
-    </Table>
+    </RBTable>
   );
 };
+
+export default Table;

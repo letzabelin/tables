@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import reducer, { actions } from './slices';
+import reducer from './slices';
 import App from './App.jsx';
 import './index.scss';
 
