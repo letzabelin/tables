@@ -7,8 +7,10 @@ export const slice = createSlice({
     quantity: 10,
   },
   reducers: {
-    paginate: (state, { nextPage, newQuantity }) => {
-      state.currentPage = nextPage;
+    paginate: (state, { payload: { nextPage } }) => {
+      state.currentPage += nextPage;
+    },
+    changeQuantity: (state, { payload: { newQuantity } }) => {
       state.quantity = newQuantity;
     },
   },

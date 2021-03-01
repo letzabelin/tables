@@ -5,7 +5,7 @@ import makeData from '../utils/makeData.js';
 const slice = createSlice({
   name: 'main',
   initialState: {
-    data: makeData(10),
+    data: makeData(20),
   },
   reducers: {},
 });
